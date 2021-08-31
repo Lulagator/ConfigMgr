@@ -1,3 +1,5 @@
+```powershell
+
 $ProviderMachineName = "$PrimarySiteServer/SMSProvider"
 $SiteCode = "$SiteCode"
 
@@ -79,3 +81,5 @@ $PXEPassword = ConvertTo-SecureString '$PXEPasswordHere' -AsPlainText -Force
 #Add to set Distribution Point group - added Sleep to help with timing failures
     Start-Sleep -Seconds 25    
     Add-CMDistributionPointToGroup -DistributionPointName $DistributionPointName -DistributionPointGroupName $DistriubtionPointGroup
+    
+```
