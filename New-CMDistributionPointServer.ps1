@@ -17,16 +17,21 @@ Set-Location "$($SiteCode):\"
 
 #Add NO_SMS_ON_DRIVE.SMS On C:
 #Change drive location(s) based on your needs for the NOSMSONDRIVE file
-$File = "NO_SMS_ON_DRIVE.SMS"
+#Add NO_SMS_ON_DRIVE.SMS
 
-IF (!(Test-Path "C:\$File"))
-    {
-        New-Item -Path  "C:\$File" -ItemType File -Force
+#Get a list of available drives
+$Drives = Get-PSDrive -PSProvider "FileSystem"
+
+#Exlude drive(s) that you don't want to place the file on.  If mutliple, seperate by comma EX: "C","E"
+$Exclude = "F"
+
+#Loop thru each drive and place the file on their root while excluding any drive in the $Exclude variable 
+ForEach ($Drive in $Drives) {
+    If (!$Exclude.Contains($Drive.Name)) {
+        New-Item -Path "$($Drive):\NO_SMS_ON_DRIVE.SMS" -ItemType File
     }
-ELSE
-    {
-        Write-Output "File Exists"
-    }
+}
+
 
 
 #Change the connection context
