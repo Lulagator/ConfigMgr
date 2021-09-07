@@ -39,7 +39,7 @@ Set-Location "$($SiteCode.Name):\"
 
 #New DP Information
 $DistributionPointName = [System.Net.Dns]::GetHostByName($env:computerName).HostName 
-$DistriubtionPointGroup = '$DPGroup'
+$DistriubtionPointGroup = '<DPGroupNameHere>'
 $SiteCodePost = '$SiteCode'
 $PXEPassword = ConvertTo-SecureString '$PXEPasswordHere' -AsPlainText -Force
 
