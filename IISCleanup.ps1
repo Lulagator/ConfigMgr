@@ -1,8 +1,8 @@
-#ISS Log Location
+#IIS Log Location
 $logPath = "D:\IIS Logs" 
 #Number of Days to keep
 $maxDaystoKeep = -30
-#Location for Log
+#Name and Location for Log export
 $cleanupRecordPath = "D:\IIS_Log_Cleanup.log" 
 
 $itemsToDelete = dir $logPath -Recurse -File *.log | Where LastWriteTime -lt ((get-date).AddDays($maxDaystoKeep)) 
