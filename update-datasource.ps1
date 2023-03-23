@@ -1,13 +1,13 @@
 #Set variables:
 #Change the Configmgr Report server name
-$reportserver = "ncsccmesqlprd01";
-$url = "http://$($reportserver)/reportserver/reportservice2005.asmx?WSDL";
+$reportserver = "SERVERNAME";
+$url = "http://$($reportserver)/reportserver/reportservice2010.asmx?WSDL";
 #Provide New Data source Path ,you need to replace this with correct one from your SSRS report 
-$newDataSourcePath = "/CM_ETS"
+$newDataSourcePath = "/ConfigMgr_XXX/{5C6358F2-4BB6-4a1b-A16E-8D96795D8602}"
 #Provide new Data source Name which is part of above source path
 $newDataSourceName = "";
 # provide Report folder path that contains reports to change the Data source.in my case,i want to change DS for all reports under eskonr/eswar/sup folder
-$reportFolderPath = "/ConfigMgr_ETS/Software Distribution - Application Monitoring/Software Distribution - Application Monitoring Hidden"
+$reportFolderPath = "/ConfigMgr_XXX/PATH/TO/FOLDER"
  #------------------------------------------------------------------------
  
  $ssrs = New-WebServiceProxy -uri $url -UseDefaultCredential
@@ -29,8 +29,8 @@ $reportFolderPath = "/ConfigMgr_ETS/Software Distribution - Application Monitori
  
  $ssrs.SetItemDataSources($reportPath, $_)
  
- Write-Host "Report's DataSource Reference ($($_.Name)): $($_.Item.Reference)";
+ Write-OUtput "Report's DataSource Reference ($($_.Name)): $($_.Item.Reference)";
  }
  
- Write-Host "------------------------"
+ Write-Output "------------------------"
  }
